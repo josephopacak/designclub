@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Club — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1814;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  body::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(200,169,110,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(200,169,110,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  /* Corner marks */
+  body::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to right, #c8a96e 35px, transparent 35px) 40px 40px / 1px 1px no-repeat,
+      linear-gradient(to bottom, #c8a96e 35px, transparent 35px) 40px 40px / 1px 1px no-repeat,
+      linear-gradient(to left, #c8a96e 35px, transparent 35px) calc(100% - 40px) 40px / 1px 1px no-repeat,
+      linear-gradient(to bottom, #c8a96e 35px, transparent 35px) calc(100% - 40px) 40px / 1px 1px no-repeat,
+      linear-gradient(to right, #c8a96e 35px, transparent 35px) 40px calc(100% - 40px) / 1px 1px no-repeat,
+      linear-gradient(to top, #c8a96e 35px, transparent 35px) 40px calc(100% - 40px) / 1px 1px no-repeat,
+      linear-gradient(to left, #c8a96e 35px, transparent 35px) calc(100% - 40px) calc(100% - 40px) / 1px 1px no-repeat,
+      linear-gradient(to top, #c8a96e 35px, transparent 35px) calc(100% - 40px) calc(100% - 40px) / 1px 1px no-repeat;
+    opacity: 0.2;
+  }
+  .container {
+    position: relative;
+    max-width: 560px;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+  }
+  .logo span { color: #c8a96e; }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: #c8a96e;
+  }
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: #c8a96e;
+    opacity: 0.3;
+    margin: 0 auto 3rem;
+  }
+  .notify-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 1.2rem;
+  }
+  .form-row {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+  .form-input {
+    flex: 1;
+    min-width: 220px;
+    max-width: 320px;
+    padding: 0.85rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.25); }
+  .form-input:focus { border-color: #c8a96e; }
+  .form-btn {
+    background: #c8a96e;
+    color: #1a1814;
+    padding: 0.85rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.25s;
+    white-space: nowrap;
+  }
+  .form-btn:hover { background: #d4b87a; }
+  .form-note {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.18);
+    margin-bottom: 4rem;
+  }
+  .contact {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact a:hover { color: #c8a96e; }
+  @media (max-width: 480px) {
+    body { padding: 1.5rem; }
+    .form-input { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">Design <span>Club</span></div>
+
+  <h1>A design studio<br><em>in your corner.</em></h1>
+
+  <p class="subtitle">Subscription-based concept design for custom home builders. Hand sketches, CAD floor plans, and 3D renders — for a fixed monthly fee. Launching soon.</p>
+
+  <div class="divider"></div>
+
+  <div class="notify-text">Get notified when we launch</div>
+
+  <div class="form-row">
+    <input type="email" class="form-input" placeholder="Enter your email" id="dc-email">
+    <button class="form-btn" id="dc-btn">Notify Me</button>
+  </div>
+  <p class="form-note">No spam. Just a single email when we're ready.</p>
+
+  <div class="contact">
+    <a href="mailto:hello@designclub.au">hello@designclub.au</a>
+    <a href="https://planreview.com.au">planreview.com.au</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById('dc-btn').addEventListener('click', function() {
+    var email = document.getElementById('dc-email').value;
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address'); return; }
+    var btn = this;
+    btn.textContent = 'SAVING...';
+    btn.disabled = true;
+    fetch('https://app.kit.com/forms/9541985/subscriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email_address: email, api_key: '4ed6728c66' })
+    }).then(function() {
+      btn.textContent = 'YOU\'RE ON THE LIST';
+      btn.style.background = 'rgba(255,255,255,0.08)';
+      btn.style.color = '#c8a96e';
+      document.getElementById('dc-email').style.display = 'none';
+    }).catch(function() {
+      btn.textContent = 'YOU\'RE ON THE LIST';
+      btn.style.background = 'rgba(255,255,255,0.08)';
+      btn.style.color = '#c8a96e';
+      document.getElementById('dc-email').style.display = 'none';
+    });
+  });
+  document.getElementById('dc-email').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') { document.getElementById('dc-btn').click(); }
+  });
+</script>
+
+</body>
+</html>
